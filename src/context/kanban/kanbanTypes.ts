@@ -11,6 +11,8 @@ export interface IkanbanColumns {
 export interface IkanbanColumnContent {
   id: number
   title: string
+  description: string
+  assignTo: 'Front End' | 'Back End' | 'UI/UX Designer' | ''
 }
 
 export type IActionkanban = IActionkanbanAdd | IActionkanbanUpdate

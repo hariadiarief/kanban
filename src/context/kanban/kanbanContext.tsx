@@ -2,7 +2,7 @@
 
 import React, { ReactNode, createContext, useContext, useReducer } from 'react'
 import { initialState, reducer } from './kanbanReducer'
-import { IActionkanban, IStateKanban} from './kanbanTypes'
+import { IActionkanban, IStateKanban } from './kanbanTypes'
 
 interface ContextProps {
   state: IStateKanban
@@ -24,7 +24,7 @@ export const KanbanProvider = ({ children }: { children: ReactNode }) => {
 export const useKanban = (): ContextProps => {
   const context = useContext(KanbanContext)
   if (!context) {
-    throw new Error('useAuth must be used within a AuthProvider')
+    throw new Error('useKanban must be used within a AuthProvider')
   }
 
   return context

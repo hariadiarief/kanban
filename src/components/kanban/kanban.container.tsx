@@ -3,7 +3,6 @@ import { monitorForElements } from '@atlaskit/pragmatic-drag-and-drop/element/ad
 import React from 'react'
 import { Column } from './components/column/'
 import { moveCard } from './kanban.business'
-import classes from './kanban.container.module.css'
 import { CardContent } from './model'
 
 export const KanbanContainer: React.FC = () => {
@@ -34,7 +33,10 @@ export const KanbanContainer: React.FC = () => {
   if (!kanbanState.columns) return
 
   return (
-    <div className={classes.container}>
+    <div
+      //  className={classes.container}
+      className='flex gap-4'
+    >
       {kanbanState.columns.map(column => (
         <Column
           key={column.id}

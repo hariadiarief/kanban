@@ -19,7 +19,6 @@ export const reducer = (state: IStateKanban, action: IActionkanban): any => {
               }
             : column
         )
-        // content: [...column.content, newContent]
       }
     default:
       return state
