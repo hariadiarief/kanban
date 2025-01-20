@@ -6,6 +6,7 @@ import './index.css'
 import { BrowserRouter } from 'react-router'
 import { Toaster } from './components/ui/toaster.tsx'
 import { AuthProvider } from './context/auth/authContext.tsx'
+import { KanbanProvider } from './context/kanban/kanbanContext.tsx'
 import RoutesApp from './router.tsx'
 
 const queryClient = new QueryClient({
@@ -20,12 +21,14 @@ const queryClient = new QueryClient({
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <AuthProvider>
-      <QueryClientProvider client={queryClient}>
-        <Toaster />
-        <BrowserRouter>
-          <RoutesApp />
-        </BrowserRouter>
-      </QueryClientProvider>
+      <KanbanProvider>
+        <QueryClientProvider client={queryClient}>
+          <Toaster />
+          <BrowserRouter>
+            <RoutesApp />
+          </BrowserRouter>
+        </QueryClientProvider>
+      </KanbanProvider>
     </AuthProvider>
   </StrictMode>
 )
