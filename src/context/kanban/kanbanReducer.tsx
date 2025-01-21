@@ -7,9 +7,10 @@ export const initialState: IStateKanban = {
 export const reducer = (state: IStateKanban, action: IActionkanban): any => {
   switch (action.type) {
     case 'update-kanban':
+      localStorage.setItem('mockData', JSON.stringify(action.payload))
       return action.payload
     case 'add-kanban':
-      return {
+      const newData = {
         ...state,
         columns: state.columns.map(column =>
           column.name === 'TO DO'
@@ -20,6 +21,8 @@ export const reducer = (state: IStateKanban, action: IActionkanban): any => {
             : column
         )
       }
+      localStorage.setItem('mockData', JSON.stringify(newData))
+      return newData
     default:
       return state
   }

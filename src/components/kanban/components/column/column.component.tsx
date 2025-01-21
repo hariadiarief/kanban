@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router'
 import { CardContent } from '../../model'
 import { Card } from '../card/'
 import { EmptySpaceDropZone } from '../empty-space-drop-zone.component'
@@ -19,7 +20,9 @@ export const Column: React.FC<Props> = props => {
     >
       <h4 className='min-w-[300px] text-center font-bold'>{name}</h4>
       {content.map(card => (
-        <Card key={card.title} content={card} columnId={columnId} />
+        <Link to={`/detail/${card.id}`}>
+          <Card content={card} columnId={columnId} />
+        </Link>
       ))}
       <EmptySpaceDropZone columnId={columnId} />
     </div>

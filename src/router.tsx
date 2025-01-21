@@ -5,6 +5,8 @@ import PageNotFound from './features/404'
 import Login from './features/authentication/login'
 import Kanban from './features/kanban'
 import Layout from './features/layout'
+import DetailKanban from './features/kanban/detail'
+import UpdateKanban from './features/kanban/update'
 
 export default function RoutesApp() {
   const { state: authState } = useAuth()
@@ -17,6 +19,14 @@ export default function RoutesApp() {
         {
           index: true,
           element: <Kanban />
+        },
+        {
+          path: '/detail/:id',
+          element: <DetailKanban />
+        },
+        {
+          path: '/edit/:id',
+          element: <UpdateKanban />
         },
         { path: '*', element: <PageNotFound /> }
       ]
