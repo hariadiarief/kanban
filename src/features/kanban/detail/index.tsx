@@ -3,7 +3,6 @@ import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
 import { useKanban } from '@/context/kanban/kanbanContext'
 import { IkanbanColumnContent } from '@/context/kanban/kanbanTypes'
-import { conjunction } from '@/lib/utils'
 import { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router'
 
@@ -61,7 +60,7 @@ export default function DetailKanban() {
           <div className='grid grid-cols-4 items-center gap-4'>
             <div className='text-right'>Assign to</div>
             <div className='col-span-3 text-muted-foreground'>
-              {conjunction(form.assignTo)}
+              {form.assignTo.join(', ')}
             </div>
           </div>
         </div>

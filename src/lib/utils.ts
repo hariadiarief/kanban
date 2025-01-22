@@ -5,11 +5,11 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
 }
 
-const formatter = new Intl.ListFormat('id', {
-  style: 'long',
-  type: 'conjunction'
-})
+// const formatter = new Intl.ListFormat('id', {
+//   style: 'long',
+//   type: 'conjunction'
+// })
 
-export function conjunction(param) {
-  if (param) return formatter.format(param)
-}
+// export function conjunction(param: string) {
+//   if (param) return formatter.format(param)
+// }
