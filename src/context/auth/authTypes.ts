@@ -17,7 +17,6 @@ export interface IAuthPayload {
   user: IAuthUser
 }
 export interface IAuthUser {
-  email: string
   username: string
 }
 

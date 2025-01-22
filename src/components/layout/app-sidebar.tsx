@@ -15,7 +15,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
 
   const userInfo = {
     ...sidebarData.user,
-    email: authState.authInfo?.user.email || sidebarData.user.email,
+    email: sidebarData.user.email,
     name: authState.authInfo?.user.username || sidebarData.user.name
   }
 
