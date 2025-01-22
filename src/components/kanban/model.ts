@@ -2,7 +2,7 @@ export interface CardContent {
   id: number
   title: string
   description: string
-  assignTo: 'Front End' | 'Back End' | 'UI/UX Designer' | ''
+  assignTo: string[]
 }
 
 export interface Column {

@@ -11,31 +11,31 @@ export const mockData: IStateKanban = {
           id: 1,
           title: 'Create the cards',
           description: 'Description of Place the cards in the columns',
-          assignTo: 'Front End'
+          assignTo: ['Front End', 'Back End']
         },
         {
           id: 2,
           title: 'Place the cards in the columns',
           description: 'Description of Place the cards in the columns ',
-          assignTo: 'Front End'
+          assignTo: ['Front End']
         },
         {
           id: 3,
           title: 'Implement card dragging',
           description: 'Description of Implement card dragging ',
-          assignTo: 'Front End'
+          assignTo: ['Front End']
         },
         {
           id: 4,
           title: 'Implement drop card',
           description: 'Description of Implement drop card ',
-          assignTo: 'Front End'
+          assignTo: ['Front End']
         },
         {
           id: 5,
           title: 'Implement drag & drop column',
           description: 'Description of Implement drag & drop column ',
-          assignTo: 'UI/UX Designer'
+          assignTo: ['UI/UX Designer']
         }
       ]
     },
@@ -47,7 +47,7 @@ export const mockData: IStateKanban = {
           id: 6,
           title: 'Delete a card',
           description: 'Description of Delete a card',
-          assignTo: 'Front End'
+          assignTo: ['Front End']
         }
       ]
     },
@@ -59,19 +59,19 @@ export const mockData: IStateKanban = {
           id: 7,
           title: 'Create boilerplate',
           description: 'Description of Create boilerplate',
-          assignTo: 'Front End'
+          assignTo: ['Front End']
         },
         {
           id: 8,
           title: 'Define data model',
           description: 'Description of Define data model',
-          assignTo: 'Back End'
+          assignTo: ['Back End']
         },
         {
           id: 9,
           title: 'Create columns',
           description: 'Description of Create columns',
-          assignTo: 'Front End'
+          assignTo: ['Front End']
         }
       ]
     }

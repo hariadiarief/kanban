@@ -12,7 +12,7 @@ export interface IkanbanColumnContent {
   id: number
   title: string
   description: string
-  assignTo: 'Front End' | 'Back End' | 'UI/UX Designer' | ''
+  assignTo: string[]
 }
 
 export type IActionkanban = IActionkanbanAdd | IActionkanbanUpdate
