@@ -10,17 +10,13 @@ import {
   DialogTitle,
   DialogTrigger
 } from '@/components/ui/dialog'
+import { FancyMultiSelect } from '@/components/ui/fancy-multi-select'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue
-} from '@/components/ui/select'
+import { ScrollArea, ScrollBar } from '@/components/ui/scroll-area'
 import { useKanban } from '@/context/kanban/kanbanContext'
 import { IkanbanColumnContent } from '@/context/kanban/kanbanTypes'
+import { roles_assignment } from '@/lib/const'
 import { useEffect, useState } from 'react'
 
 export default function Kanban() {
@@ -30,7 +26,7 @@ export default function Kanban() {
     loadKanbanContent().then(content => {
       dispatch({ type: 'update-kanban', payload: content })
     })
-  }, [])
+  }, [dispatch])
 
   const nextId = state.columns.reduce(
     (acc, current) => acc + current.content.length,
@@ -42,7 +38,7 @@ export default function Kanban() {
       id: nextId,
       title: '',
       description: '',
-      assignTo: ''
+      assignTo: []
     })
 
     const handleFormChange = (key: string, value: string) => {
@@ -100,34 +96,20 @@ export default function Kanban() {
                 Assign to
               </Label>
 
-              <Select
-                value={form.assignTo}
-                onValueChange={value => handleFormChange('assignTo', value)}
-              >
-                <SelectTrigger className='col-span-3'>
-                  <SelectValue placeholder='None' />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value='Front End'>Front End</SelectItem>
-                  <SelectItem value='Back End'>Back End </SelectItem>
-                  <SelectItem value='UI/UX Designer'>UI/UX Designer</SelectItem>
-                </SelectContent>
-              </Select>
-
-              {/* 
-              <Input
-                value={form.assignTo}
-                id='assignTo'
-                defaultValue='@peduarte'
+              <FancyMultiSelect
+                placeholder={'Select Assignment'}
                 className='col-span-3'
-                onChange={e => handleFormChange('assignTo', e.target.value)}
-              /> */}
+                values={roles_assignment}
+                onChange={value => handleFormChange('assignTo', value)}
+              />
             </div>
           </div>
           <DialogFooter>
             <Button
               type='submit'
-              onClick={() => dispatch({ type: 'add-kanban', payload: form })}
+              onClick={() => {
+                dispatch({ type: 'add-kanban', payload: form })
+              }}
             >
               Save changes
             </Button>
@@ -141,7 +123,10 @@ export default function Kanban() {
     <div className='space-y-4'>
       <h3 className='text-xl font-bold'>Kanban</h3>
       <AddNewTask />
-      <KanbanContainer />
+      <ScrollArea className='w-full whitespace-nowrap rounded-md border p-2'>
+        <KanbanContainer />
+        <ScrollBar orientation='horizontal' />
+      </ScrollArea>
     </div>
   )
 }

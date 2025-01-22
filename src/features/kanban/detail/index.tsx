@@ -2,10 +2,8 @@ import { loadKanbanContent } from '@/components/kanban/api'
 import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
 import { useKanban } from '@/context/kanban/kanbanContext'
-import {
-  IkanbanColumnContent,
-  IkanbanColumns
-} from '@/context/kanban/kanbanTypes'
+import { IkanbanColumnContent } from '@/context/kanban/kanbanTypes'
+import { conjunction } from '@/lib/utils'
 import { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router'
 
@@ -18,31 +16,25 @@ export default function DetailKanban() {
     id: Number(id),
     title: '',
     description: '',
-    assignTo: ''
+    assignTo: []
   })
-
-  const [selectedColumn, setselectedColumn] = useState<IkanbanColumns | null>(
-    null
-  )
 
   useEffect(() => {
     loadKanbanContent().then(content => {
       dispatch({ type: 'update-kanban', payload: content })
     })
-  }, [])
+  }, [dispatch])
 
   useEffect(() => {
-    let selectedColumn, selectedCard
+    let selectedCard
 
     state.columns.forEach(column => {
       const matchedCards = column.content.filter(item => item.id === Number(id))
       if (matchedCards.length > 0) {
-        selectedColumn = column
         selectedCard = matchedCards[0]
       }
     })
 
-    if (selectedColumn) setselectedColumn(selectedColumn)
     if (selectedCard) setForm(selectedCard)
   }, [state.columns, id])
 
@@ -69,7 +61,7 @@ export default function DetailKanban() {
           <div className='grid grid-cols-4 items-center gap-4'>
             <div className='text-right'>Assign to</div>
             <div className='col-span-3 text-muted-foreground'>
-              {form.assignTo}
+              {conjunction(form.assignTo)}
             </div>
           </div>
         </div>

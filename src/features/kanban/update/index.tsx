@@ -1,20 +1,15 @@
 import { loadKanbanContent } from '@/components/kanban/api'
 import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
+import { FancyMultiSelect } from '@/components/ui/fancy-multi-select'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue
-} from '@/components/ui/select'
 import { useKanban } from '@/context/kanban/kanbanContext'
 import {
   IkanbanColumnContent,
   IkanbanColumns
 } from '@/context/kanban/kanbanTypes'
+import { roles_assignment } from '@/lib/const'
 import { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router'
 
@@ -27,7 +22,7 @@ export default function UpdateKanban() {
     id: Number(id),
     title: '',
     description: '',
-    assignTo: ''
+    assignTo: []
   })
 
   const [selectedColumn, setselectedColumn] = useState<IkanbanColumns | null>(
@@ -38,7 +33,7 @@ export default function UpdateKanban() {
     loadKanbanContent().then(content => {
       dispatch({ type: 'update-kanban', payload: content })
     })
-  }, [])
+  }, [dispatch])
 
   useEffect(() => {
     let selectedColumn, selectedCard
@@ -82,6 +77,7 @@ export default function UpdateKanban() {
     dispatch({ type: 'update-kanban', payload })
     navigate('/')
   }
+
   const handleDelete = () => {
     if (!selectedColumn?.name) return
 
@@ -147,19 +143,13 @@ export default function UpdateKanban() {
               Assign to
             </Label>
 
-            <Select
-              value={form.assignTo}
-              onValueChange={value => handleFormChange('assignTo', value)}
-            >
-              <SelectTrigger className='col-span-3'>
-                <SelectValue placeholder='None' />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value='Front End'>Front End</SelectItem>
-                <SelectItem value='Back End'>Back End </SelectItem>
-                <SelectItem value='UI/UX Designer'>UI/UX Designer</SelectItem>
-              </SelectContent>
-            </Select>
+            <FancyMultiSelect
+              defaultValues={form.assignTo}
+              placeholder={'Select Assignment'}
+              className='col-span-3'
+              values={roles_assignment}
+              onChange={value => handleFormChange('assignTo', value)}
+            />
           </div>
         </div>
       </Card>
