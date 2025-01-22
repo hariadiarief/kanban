@@ -73,7 +73,7 @@ export function FancyMultiSelect({
 
   React.useEffect(() => {
     onChange(selected.map(item => item.value))
-  }, [selected, onChange])
+  }, [selected])
 
   const selectables = React.useMemo(() => {
     return values.filter(

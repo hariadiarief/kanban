@@ -41,7 +41,7 @@ export default function Kanban() {
       assignTo: []
     })
 
-    const handleFormChange = (key: string, value: string) => {
+    const handleFormChange = (key: string, value: string | string[]) => {
       setForm({
         ...form,
         [key]: value

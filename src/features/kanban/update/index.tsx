@@ -50,7 +50,7 @@ export default function UpdateKanban() {
     if (selectedCard) setForm(selectedCard)
   }, [state.columns, id])
 
-  const handleFormChange = (key: string, value: string) => {
+  const handleFormChange = (key: string, value: string | string[]) => {
     setForm({
       ...form,
       [key]: value
@@ -75,7 +75,7 @@ export default function UpdateKanban() {
     }
 
     dispatch({ type: 'update-kanban', payload })
-    navigate('/')
+    navigate(`/detail/${id}`)
   }
 
   const handleDelete = () => {
