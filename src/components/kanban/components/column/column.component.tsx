@@ -20,7 +20,7 @@ export const Column: React.FC<Props> = props => {
     >
       <h4 className='min-w-[300px] text-center font-bold'>{name}</h4>
       {content.map(card => (
-        <Link to={`/detail/${card.id}`}>
+        <Link to={`/detail/${card.id}`} key={card.id}>
           <Card content={card} columnId={columnId} />
         </Link>
       ))}
