@@ -1,3 +1,4 @@
+import { Badge } from '@/components/ui/badge'
 import {
   Card as CardComponent,
   CardContent as CardContentComponent,
@@ -11,8 +12,8 @@ import {
 } from '@atlaskit/pragmatic-drag-and-drop/element/adapter'
 import React, { useEffect, useRef, useState } from 'react'
 import invariant from 'tiny-invariant'
-import { GhostCard } from '../ghost-card/ghost-card.component'
 import { CardContent } from '../../model'
+import { GhostCard } from '../ghost-card/ghost-card.component'
 
 interface Props {
   columnId: number
@@ -60,7 +61,7 @@ export const Card: React.FC<Props> = props => {
         // className={classes.card}
         className='w-full'
         style={{
-          opacity: dragging ? 0.4 : 1,
+          opacity: dragging ? 0.4 : 1
           // background: isDraggedOver ? 'lightblue' : 'white'
         }}
       >
@@ -71,7 +72,13 @@ export const Card: React.FC<Props> = props => {
               <div className='line-clamp-2'>{content.description}</div>
             </CardDescription>
           </CardHeader>
-          {/* <CardContentComponent> </CardContentComponent> */}
+          <CardContentComponent>
+            <div className='flex flex-wrap gap-2'>
+              {content.assignTo.map(item => (
+                <Badge>{item}</Badge>
+              ))}
+            </div>
+          </CardContentComponent>
         </CardComponent>
 
         {/* <div className='flex flex-col'>
