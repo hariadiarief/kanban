@@ -72,7 +72,7 @@ export default function DetailKanban() {
           type='submit'
           onClick={() => navigate(`/edit/${id}`)}
         >
-          Edit
+          Edit / Delete
         </Button>
       </div>
     </div>

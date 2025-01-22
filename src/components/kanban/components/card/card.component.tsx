@@ -75,7 +75,7 @@ export const Card: React.FC<Props> = props => {
           <CardContentComponent>
             <div className='flex flex-wrap gap-2'>
               {content.assignTo.map(item => (
-                <Badge>{item}</Badge>
+                <Badge key={item}>{item}</Badge>
               ))}
             </div>
           </CardContentComponent>

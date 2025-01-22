@@ -4,9 +4,10 @@ import { useAuth } from './context/auth/authContext'
 import PageNotFound from './features/404'
 import Login from './features/authentication/login'
 import Kanban from './features/kanban'
-import Layout from './features/layout'
+import CreateKanban from './features/kanban/create'
 import DetailKanban from './features/kanban/detail'
-import UpdateKanban from './features/kanban/update'
+import EditKanban from './features/kanban/edit'
+import Layout from './features/layout'
 
 export default function RoutesApp() {
   const { state: authState } = useAuth()
@@ -21,12 +22,16 @@ export default function RoutesApp() {
           element: <Kanban />
         },
         {
+          path: '/create',
+          element: <CreateKanban />
+        },
+        {
           path: '/detail/:id',
           element: <DetailKanban />
         },
         {
           path: '/edit/:id',
-          element: <UpdateKanban />
+          element: <EditKanban />
         },
         { path: '*', element: <PageNotFound /> }
       ]
